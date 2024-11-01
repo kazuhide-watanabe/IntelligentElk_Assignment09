@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "IntelligentElk_Assignment09", "IntelligentElk_Assignment09\IntelligentElk_Assignment09.pyproj", "{F50C79D6-A106-4484-8CFF-270C271D6A46}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F50C79D6-A106-4484-8CFF-270C271D6A46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F50C79D6-A106-4484-8CFF-270C271D6A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FFE1C212-95A2-41B1-BA8D-BC068F80DBE2}
+	EndGlobalSection
+EndGlobal
