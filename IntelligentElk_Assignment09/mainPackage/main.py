@@ -39,17 +39,22 @@ if __name__ == "__main__":
     description = random_row[2]
     manufacturer_id = random_row[3]
     brand_id = random_row[4]
-    """
+    
     print("ProductID:", product_id)
     print("Description:", str(description))
     print("ManufacturerID:", manufacturer_id)
     print("BrandID:", brand_id)
-    """
+    
 
     cursor.execute("SELECT Manufacturer FROM tManufacturer WHERE ManufacturerID = '" + str(manufacturer_id) + "'")
     manufacturerName = cursor.fetchall()
     """
     print(manufacturerName)
     """
+    
+    cursor.execute("SELECT Brand FROM tBrand WHERE BrandID = '" + str(brand_id) + "'")
+    brandName = cursor.fetchall()
+    print(brandName)
 
-
+    cursor.execute("SELECT TOP (100) PERCENT SUM(dbo.tTransactionDetail.QtyOfProduct) AS NumberOfItemsSold FROM dbo.tTransactionDetail INNER JOIN dbo.tTransaction ON dbo.tTransactionDetail.TransactionID = dbo.tTransaction.TransactionID WHERE (dbo.tTransaction.TransactionTypeID = 1) AND (dbo.tTransactionDetail.ProductID =  str(product_id) ")
+    
