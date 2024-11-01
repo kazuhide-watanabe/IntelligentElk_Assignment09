@@ -14,6 +14,7 @@
 #**********************************
 
 # main.py
+
 import random
 import pyodbc
 from connectionPackage.connection import *
@@ -30,31 +31,32 @@ if __name__ == "__main__":
         print(e)
         exit()
 
+    # Instruction 1
     # Execute the query and fetch all results
     cursor.execute("SELECT ProductID, [UPC-A ], Description, ManufacturerID, BrandID FROM tProduct")
     results = cursor.fetchall()
-    random_row = random.choice(results)
 
+    # Instruction 2
+    random_row = random.choice(results)
     product_id = random_row[0]
-    description = random_row[2]
+    description = random_row[2] if random_row[2] else "with no description"
     manufacturer_id = random_row[3]
     brand_id = random_row[4]
     
-    print("ProductID:", product_id)
-    print("Description:", str(description))
-    print("ManufacturerID:", manufacturer_id)
-    print("BrandID:", brand_id)
-    
-
+    # Instruction 3
     cursor.execute("SELECT Manufacturer FROM tManufacturer WHERE ManufacturerID = '" + str(manufacturer_id) + "'")
+   
+    # Instruction 4
     manufacturerName = cursor.fetchall()
-    """
-    print(manufacturerName)
-    """
     
+    # Instruction 5
     cursor.execute("SELECT Brand FROM tBrand WHERE BrandID = '" + str(brand_id) + "'")
     brandName = cursor.fetchall()
-    print(brandName)
 
-    cursor.execute("SELECT TOP (100) PERCENT SUM(dbo.tTransactionDetail.QtyOfProduct) AS NumberOfItemsSold FROM dbo.tTransactionDetail INNER JOIN dbo.tTransaction ON dbo.tTransactionDetail.TransactionID = dbo.tTransaction.TransactionID WHERE (dbo.tTransaction.TransactionTypeID = 1) AND (dbo.tTransactionDetail.ProductID =  str(product_id) ")
-    
+    # Instruction 6
+    cursor.execute("SELECT TOP (100) PERCENT SUM(dbo.tTransactionDetail.QtyOfProduct) AS NumberOfItemsSold FROM dbo.tTransactionDetail INNER JOIN dbo.tTransaction ON dbo.tTransactionDetail.TransactionID = dbo.tTransaction.TransactionID WHERE (dbo.tTransaction.TransactionTypeID = 1) AND (dbo.tTransactionDetail.ProductID = '" + str(product_id) + "')")
+    numberOfItemsSold = cursor.fetchall()
+
+    # Instruction 7
+    grammaticallyCorrectSentence = f"The product {description}, manufactured by {manufacturerName[0][0]}, and branded as {brandName[0][0]}, has sold a total of {numberOfItemsSold[0][0]} items."
+    print(grammaticallyCorrectSentence)
