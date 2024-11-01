@@ -14,16 +14,42 @@
 #**********************************
 
 # main.py
-
+import random
 import pyodbc
-from connectionPackage.Connection import *
+from connectionPackage.connection import *
 
-try:
-    conn = Connect()
-    # Submit a query to the SQL Server instance and store the results in the cursor object 
-    cursor = conn.cursor()
+if __name__ == "__main__":
 
-except Exception as e:
-    print("Error accessing database")
-    print(e)
-    exit()
+    try:
+        conn = Connect()
+        # Submit a query to the SQL Server instance and store the results in the cursor object 
+        cursor = conn.cursor()
+
+    except Exception as e:
+        print("Error accessing database")
+        print(e)
+        exit()
+
+    # Execute the query and fetch all results
+    cursor.execute("SELECT ProductID, [UPC-A ], Description, ManufacturerID, BrandID FROM tProduct")
+    results = cursor.fetchall()
+    random_row = random.choice(results)
+
+    product_id = random_row[0]
+    description = random_row[2]
+    manufacturer_id = random_row[3]
+    brand_id = random_row[4]
+    """
+    print("ProductID:", product_id)
+    print("Description:", str(description))
+    print("ManufacturerID:", manufacturer_id)
+    print("BrandID:", brand_id)
+    """
+
+    cursor.execute("SELECT Manufacturer FROM tManufacturer WHERE ManufacturerID = '" + str(manufacturer_id) + "'")
+    manufacturerName = cursor.fetchall()
+    """
+    print(manufacturerName)
+    """
+
+

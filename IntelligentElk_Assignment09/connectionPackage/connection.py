@@ -13,7 +13,7 @@
 # Anything else that's relevant: 
 #**********************************
 
-# Connection.py
+# connection.py
 
 import pyodbc
 
