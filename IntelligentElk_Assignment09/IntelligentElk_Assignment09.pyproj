@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="connectionPackage\Connection.py">
+    <Compile Include="connectionPackage\connection.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="connectionPackage\__init__.py">
